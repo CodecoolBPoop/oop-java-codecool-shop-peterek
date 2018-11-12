@@ -22,6 +22,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
 
@@ -30,6 +33,8 @@
     <div class="container-fluid pt-3 pb-3 text-center text-light bg-secondary" id="header">
         <h1 class="display-2">Grabovoj Numbers</h1>
         <h3>Find The Perfect Number For Almost Every Occasion!</h3>
+        <h4><a href="https://www.scribd.com/document/323126360/Grigori-Grabovoi-Instructions-How-to-Work-With-Numbers"
+               target="_blank" class="badge badge-light">What Is A Grabovoj Number <i class="far fa-question-circle"></i></a></h4>
     </div>
 
     <div class="container">
@@ -51,7 +56,7 @@
                     <p class="card-text" th:text="${prod.description}">Product description</p>
                 </div>
                 <div class="card-footer bg-success">
-                    <a href="#" class="btn btn-success btn-block font-weight-bold">Add to cart</a>
+                    <a href="#" class="btn btn-success btn-block font-weight-bold">Add to cart <i class="fas fa-shopping-cart"></i></a>
                 </div>
             </div>
         </div>
