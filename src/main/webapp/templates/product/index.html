@@ -34,9 +34,6 @@
 </div>
 
 <div class="container">
-    <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
-    </div>
 
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -44,7 +41,7 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li th:each="cat,iterStat : ${categories}"><a href="#" th:text="${cat}">Category name</a></li>
+            <li th:each="cat,iterStat : ${categories}"><a th:href=@{/?category={category}(category=${cat})} th:text="${cat}">Category name</a></li>
         </ul>
     </div>
 

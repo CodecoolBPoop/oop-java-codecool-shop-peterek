@@ -34,13 +34,23 @@ public class ProductController extends HttpServlet {
             productCategories.add(productCategoryDataStore.getAll().get(i).getName());
         }
 
+        String categoryFromURL = req.getParameter("category");
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 //        context.setVariables(params);
         context.setVariable("recipient", "World");
-        context.setVariable("category", productCategoryDataStore.find(1));
-        context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+
+        for (int i = 0; i < productCategories.size(); i++) {
+            if (categoryFromURL.equals(productCategories.get(i))) {
+                context.setVariable("category", productCategoryDataStore.find(i + 1));
+                context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(i + 1)));
+            } else {
+                context.setVariable("category", productCategoryDataStore.find(1));
+                context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+            }
+        }
+
         context.setVariable("categories", productCategories);
         engine.process("product/index.html", context, resp.getWriter());
 
