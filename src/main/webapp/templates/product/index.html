@@ -34,7 +34,7 @@
         <h1 class="display-2">Grabovoj Numbers</h1>
         <h3>Find The Perfect Number For Almost Every Occasion!</h3>
         <h4><a href="https://www.scribd.com/document/323126360/Grigori-Grabovoi-Instructions-How-to-Work-With-Numbers"
-               target="_blank" class="badge badge-light">What Is A Grabovoj Number <i class="far fa-question-circle"></i></a></h4>
+               target="_blank" class="badge badge-light text-secondary">What Is A Grabovoj Number <i class="far fa-question-circle"></i></a></h4>
     </div>
 
     <div class="container">
@@ -54,6 +54,9 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${prod.name}">Product name</h5>
                     <p class="card-text" th:text="${prod.description}">Product description</p>
+                </div>
+                <div class="card-footer text-center bg-info text-white">
+                    <h5 class="card-text" th:text="${prod.getPrice()}">Price</h5>
                 </div>
                 <div class="card-footer bg-success">
                     <a href="#" class="btn btn-success btn-block font-weight-bold">Add to cart <i class="fas fa-shopping-cart"></i></a>
