@@ -39,12 +39,39 @@
 
     <div class="container">
 
-        <div class="dropdown pt-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span th:text="${category.name}">Category name</span>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" th:each="cat,iterStat : ${categories}" th:href=@{/?category={category}(category=${cat})} th:text="${cat}">Category name</a>
+        <div id="menubar" class="row justify-content-center p-4">
+            <div class="col-auto">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn btn-white border border-warning">Browse By Product Category:</button>
+
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span th:text="${category.name}">Category name</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" th:each="cat,iterStat : ${categories}" th:href=@{/?category={category}(category=${cat})} th:text="${cat}">Category name</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn btn-white border border-warning">Browse By Supplier:</button>
+
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span th:text="${category.name}">Category name</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" th:each="cat,iterStat : ${categories}" th:href=@{/?category={category}(category=${cat})} th:text="${cat}">Category name</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <button type="button" class="btn btn-warning">My Shopping Cart <i class="fas fa-shopping-cart"></i></button>
             </div>
         </div>
 
