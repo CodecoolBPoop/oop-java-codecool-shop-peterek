@@ -34,10 +34,6 @@ public class ProductController extends HttpServlet {
             productCategories.add(productCategoryDataStore.getAll().get(i).getName());
         }
 
-        //productCategoryDataStore.getAll().size()
-        //productCategories.add(productCategoryDataStore.find(1).getName());
-        //productCategories.add(productCategoryDataStore.find(2).getName());
-
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
