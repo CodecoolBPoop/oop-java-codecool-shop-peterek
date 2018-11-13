@@ -49,20 +49,28 @@ public class ProductController extends HttpServlet {
             for (int i = 0; i < productCategories.size(); i++) {
                 if (categoryFromURL.equals(productCategories.get(i))) {
                     context.setVariable("category", productCategoryDataStore.find(i + 1));
+                    context.setVariable("categoryName", productCategoryDataStore.find(i + 1).getName());
                     context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(i + 1)));
+                    context.setVariable("supplier", supplierDataStore.getAll());
+                    context.setVariable("supplierName", "Choose");
                 }
             }
         } else if (supplierFromURL != null) {
             for (int i = 0; i < supplierDataStore.getAll().size(); i++) {
                 if (supplierFromURL.equals(supplierDataStore.getAll().get(i).getName())) {
-                    context.setVariable("category", supplierDataStore.find(i + 1));
+                    context.setVariable("category", productCategoryDataStore.find(i + 1));
+                    context.setVariable("categoryName", "Choose");
                     context.setVariable("products", productDataStore.getBy(supplierDataStore.find(i + 1)));
+                    context.setVariable("supplier", supplierDataStore.getAll());
+                    context.setVariable("supplierName", supplierDataStore.getAll().get(i).getName());
                 }
             }
-
         } else {
             context.setVariable("category", productCategoryDataStore.find(1));
+            context.setVariable("categoryName", productCategoryDataStore.find(1).getName());
             context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+            context.setVariable("supplier", supplierDataStore.getAll());
+            context.setVariable("supplierName", "Choose");
         }
 
         context.setVariable("categories", productCategories);

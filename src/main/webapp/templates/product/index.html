@@ -46,7 +46,7 @@
 
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span th:text="${category.name}">Category name</span>
+                            <span th:text="${categoryName}">Category name</span>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item" th:each="cat,iterStat : ${categories}" th:href=@{/?category={category}(category=${cat})} th:text="${cat}">Category name</a>
@@ -61,10 +61,10 @@
 
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span th:text="${category.name}">Category name</span>
+                            <span th:text="${supplierName}">Supplier name</span>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" th:each="cat,iterStat : ${categories}" th:href=@{/?category={category}(category=${cat})} th:text="${cat}">Category name</a>
+                            <a class="dropdown-item" th:each="sup,iterStat : ${supplier}" th:href=@{/?supplier={supplier}(supplier=${sup.name})} th:text="${sup.name}">Supplier name</a>
                         </div>
                     </div>
                 </div>
