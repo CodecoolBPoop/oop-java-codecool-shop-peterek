@@ -20,6 +20,8 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous" defer></script>
 
+    <script src="/static/js/scripts.js" defer></script>
+
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -86,7 +88,7 @@
                     <h5 class="card-text" th:text="${prod.getPrice()}">Price</h5>
                 </div>
                 <div class="card-footer bg-success">
-                    <a href="#" class="btn btn-success btn-block font-weight-bold">Add to cart <i class="fas fa-shopping-cart"></i></a>
+                    <a href="#" class="btn btn-success btn-block font-weight-bold addToCart" th:name="${prod.id}">Add to cart <i class="fas fa-shopping-cart"></i></a>
                 </div>
             </div>
         </div>
