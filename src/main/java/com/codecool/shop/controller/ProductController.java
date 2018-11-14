@@ -33,7 +33,6 @@ public class ProductController extends HttpServlet {
 
         ShoppingCartDao sc = ShoppingCartDaoMem.getInstance();
         sc.add(productDataStore.getAll().get(1), 2);
-        sc.add(productDataStore.getAll().get(2), 3);
 
         System.out.println(sc.getCart().getProducts());
 
