@@ -16,7 +16,8 @@ let addToCartButtons = document.getElementsByClassName("addToCart");
 for (let i = 0; i < addToCartButtons.length; i++) {
     let cartButton = addToCartButtons[i];
     cartButton.addEventListener('click', function () {
-        postJsonData(cartButton.getAttribute('name'));
+        let productId = cartButton.getAttribute('name');
+        postJsonData(productId);
     })
 }
 
