@@ -1,23 +1,18 @@
-function postJsonData(data) {
-    fetch('/', {
-        method: 'POST',
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers:{
-            'Content-Type': 'application/json'
-        }
-    }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
-        .catch(error => console.error('Error:', error));
+function cartItemNumber() {
+    let addButtons = document.getElementsByClassName("buy");
+   // let cart = document.getElementById("cart");
+
+    for (let button of addButtons) {
+        button.addEventListener("click", function () {
+            let productId = button.getAttribute("id");
+            let params = {itemId: productId};
+            $.post('/', $.param(params), function () {
+                console.log("Successfully added.");
+            });
+    //        let cartNum = parseInt(cart.innerHTML) + 1;
+    //        cart.innerHTML = cartNum;
+        })
+    }
 }
 
-
-let addToCartButtons = document.getElementsByClassName("addToCart");
-
-for (let i = 0; i < addToCartButtons.length; i++) {
-    let cartButton = addToCartButtons[i];
-    cartButton.addEventListener('click', function () {
-        let productId = cartButton.getAttribute('name');
-        postJsonData(productId);
-    })
-}
-
+cartItemNumber();

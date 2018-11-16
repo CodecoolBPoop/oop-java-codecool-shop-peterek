@@ -25,14 +25,13 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
 
+    ProductDao productDataStore = ProductDaoMem.getInstance();
+    ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+    SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+    ShoppingCartDao sc = ShoppingCartDaoMem.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
-
-        ShoppingCartDao sc = ShoppingCartDaoMem.getInstance();
-        sc.add(productDataStore.getAll().get(1), 2);
 
 
 //        Map params = new HashMap<>();
@@ -88,16 +87,11 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        StringBuffer jsonData = new StringBuffer();
-        String line;
-        try {
-            BufferedReader reader = req.getReader();
-            while ((line = reader.readLine()) != null)
-                jsonData.append(line);
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
+        int productIndex = Integer.valueOf(req.getParameter("itemId")) - 1;
 
-        System.out.println(jsonData);
+        sc.add(productDataStore.getAll().get(productIndex), 1);
+        System.out.println(sc.getCart().getProducts());
+
+
     }
 }
