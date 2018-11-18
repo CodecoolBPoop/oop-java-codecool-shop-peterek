@@ -11,7 +11,6 @@ import com.codecool.shop.dao.implementation.ShoppingCartDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
-import java.io.BufferedReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
@@ -88,10 +86,10 @@ public class ProductController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int productIndex = Integer.valueOf(req.getParameter("itemId")) - 1;
+        sc.add(productDataStore.find(productIndex), 1);
 
-        sc.add(productDataStore.getAll().get(productIndex), 1);
         System.out.println(sc.getCart().getProducts());
-
+        System.out.println(productDataStore.find(productIndex).getPrice());
 
     }
 }
