@@ -28,32 +28,39 @@
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 
-    <script type="text/javascript" th:src="@{/static/js/scripts.js}" defer></script>
 </head>
 
 <body class="bg-light">
 
-<div class="container-fluid pt-3 pb-3 text-center text-light bg-secondary" id="header">
-    <h1 class="display-2">Grabovoj Numbers</h1>
-    <h3>Find The Perfect Number For Almost Every Occasion!</h3>
-    <h4><a href="https://www.scribd.com/document/323126360/Grigori-Grabovoi-Instructions-How-to-Work-With-Numbers"
-           target="_blank" class="badge badge-light text-secondary">What Is A Grabovoj Number <i class="far fa-question-circle"></i></a></h4>
-</div>
-
-
-<div id="products" class="row list-group">
-
-        <div class="item col-xs-4 col-lg-4" th:each="prod : ${sc}">
-            <div class="thumbnail">
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${prod}">Product name</h4>
-                </div>
-            </div>
-        </div>
+    <div class="container-fluid pt-3 pb-3 text-center text-light bg-secondary" id="header">
+        <h1 class="display-2">Grabovoj Numbers</h1>
+        <h3>Find The Perfect Number For Almost Every Occasion!</h3>
+        <h4><a href="https://www.scribd.com/document/323126360/Grigori-Grabovoi-Instructions-How-to-Work-With-Numbers"
+               target="_blank" class="badge badge-light text-secondary">What Is A Grabovoj Number <i class="far fa-question-circle"></i></a></h4>
     </div>
 
+    <div class="container">
 
-<div th:replace="footer.html :: copy"></div>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col">Product Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="prod : ${sc}">
+                    <td th:text="${prod.getKey().name}">Product Name</td>
+                    <td th:text="${prod.getKey().getPrice()}">Product Price</td>
+                    <td th:text="${prod.getValue()}">Product Quantity</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div th:replace="footer.html :: copy"></div>
 
 </body>
 </html>

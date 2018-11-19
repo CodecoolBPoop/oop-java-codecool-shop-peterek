@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(urlPatterns = {"/shopping"})
-public class Shopping  extends HttpServlet {
+@WebServlet(urlPatterns = {"/shopping-cart"})
+public class ShoppingCartController extends HttpServlet {
 
     ShoppingCartDao sc = ShoppingCartDaoMem.getInstance();
 
@@ -27,7 +27,7 @@ public class Shopping  extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("sc", sc.getCart().getProducts());
-        engine.process("product/shopping.html", context, resp.getWriter());
+        engine.process("product/shopping-cart.html", context, resp.getWriter());
 
     }
 
