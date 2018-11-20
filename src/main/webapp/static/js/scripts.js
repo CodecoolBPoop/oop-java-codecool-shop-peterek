@@ -42,6 +42,9 @@ function subtractOneItem(){
             });
             let subtractQuantity = parseInt(quantities.item(i).innerHTML) - 1;
             quantities.item(i).innerHTML = subtractQuantity;
+            if(subtractQuantity==0){
+                location.reload(true);
+            }
         });
     }
 }

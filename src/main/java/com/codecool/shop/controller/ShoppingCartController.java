@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,9 +41,20 @@ public class ShoppingCartController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int productIndex = Integer.valueOf(req.getParameter("itemId"));
-        sc.add(productDataStore.find(productIndex), -1);
 
+        List products = new ArrayList<Product>(sc.getCart().getProducts().keySet());
+        List values = new ArrayList<Integer>(sc.getCart().getProducts().values());
+
+        for(int i=0; i<products.size(); i++){
+            if(products.get(i).equals(productDataStore.find(productIndex))){
+                int num = Integer.valueOf(values.get(i).toString());
+                if(num > 1){
+                    sc.add(productDataStore.find(productIndex), -1);
+                } else if (num == 1){
+                    sc.remove(productDataStore.find(productIndex));
+                }
+            }
+        }
     }
-
 }
 

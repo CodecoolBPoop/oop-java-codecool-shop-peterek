@@ -95,7 +95,6 @@ public class ProductController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int productIndex = Integer.valueOf(req.getParameter("itemId"));
-        System.out.println(productIndex);
         sc.add(productDataStore.find(productIndex), 1);
 
     }
