@@ -39,6 +39,10 @@
                target="_blank" class="badge badge-light text-secondary">What Is A Grabovoj Number <i class="far fa-question-circle"></i></a></h4>
     </div>
 
+    <div class="col-auto">
+        <a href="/" class="btn btn-warning">Back to the shop</a>
+    </div>
+
     <div class="container">
 
         <table class="table table-bordered mt-3">
@@ -46,16 +50,18 @@
                 <tr>
                     <th scope="col">Product Name</th>
                     <th scope="col">Product Price</th>
+                    <th scope="col"></th>
                     <th scope="col">Product Quantity</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="prod : ${sc}">
                     <td th:text="${prod.getKey().name}">Product Name</td>
                     <td th:text="${prod.getKey().getPrice()}">Product Price</td>
+                    <td><button class="subtractItem" th:name="${prod.getKey().getId()}">-</button></td>
                     <td class="quantity" th:text="${prod.getValue()}">Product Quantity</td>
                     <td><button class="addItem" th:name="${prod.getKey().getId()}">+</button></td>
-                    <td><button>-</button></td>
                 </tr>
             </tbody>
         </table>

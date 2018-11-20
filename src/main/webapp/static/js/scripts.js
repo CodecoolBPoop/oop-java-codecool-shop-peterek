@@ -30,5 +30,22 @@ function addOneItem(){
     }
 }
 
+function subtractOneItem(){
+    let subtractButtons = document.getElementsByClassName("subtractItem");
+    let quantities = document.getElementsByClassName("quantity");
+    for(let i = 0; i < subtractButtons.length; i++) {
+        subtractButtons.item(i).addEventListener("click", function(){
+            let productId = subtractButtons.item(i).getAttribute("name");
+            let params = {itemId: productId};
+            $.post('/shopping-cart', $.param(params), function(){
+                console.log("successful");
+            });
+            let subtractQuantity = parseInt(quantities.item(i).innerHTML) - 1;
+            quantities.item(i).innerHTML = subtractQuantity;
+        });
+    }
+}
+
 sendItemId();
 addOneItem();
+subtractOneItem();
