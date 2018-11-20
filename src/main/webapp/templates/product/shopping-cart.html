@@ -53,7 +53,9 @@
                 <tr th:each="prod : ${sc}">
                     <td th:text="${prod.getKey().name}">Product Name</td>
                     <td th:text="${prod.getKey().getPrice()}">Product Price</td>
-                    <td th:text="${prod.getValue()}">Product Quantity</td>
+                    <td class="quantity" th:text="${prod.getValue()}">Product Quantity</td>
+                    <td><button class="addItem" th:name="${prod.getKey().getId()}">+</button></td>
+                    <td><button>-</button></td>
                 </tr>
             </tbody>
         </table>

@@ -41,6 +41,14 @@ public class ProductController extends HttpServlet {
             productCategories.add(productCategoryDataStore.getAll().get(i).getName());
         }
 
+//      Check shopping cart list and sum the values of items
+        List list = new ArrayList(sc.getCart().getProducts().values());
+        int  numOfItems = 0;
+        for(int i=0; i<list.size(); i++){
+            numOfItems += Integer.valueOf(list.get(i).toString());
+        }
+
+
         String categoryFromURL = req.getParameter("category");
         String supplierFromURL = req.getParameter("supplier");
 
@@ -77,6 +85,7 @@ public class ProductController extends HttpServlet {
             context.setVariable("supplierName", "Choose");
         }
 
+        context.setVariable("numOfItems", numOfItems);
         context.setVariable("categories", productCategories);
         engine.process("product/index.html", context, resp.getWriter());
 
@@ -89,8 +98,6 @@ public class ProductController extends HttpServlet {
         System.out.println(productIndex);
         sc.add(productDataStore.find(productIndex), 1);
 
-        System.out.println(sc.getCart().getProducts());
-        System.out.println(productDataStore.find(productIndex).getPrice());
-
     }
+
 }
