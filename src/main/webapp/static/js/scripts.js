@@ -28,6 +28,7 @@ function addOneItem(){
             });
             let addQuantity = parseInt(quantities.item(i).innerHTML) + 1;
             quantities.item(i).innerHTML = addQuantity;
+
             let addPrice = parseInt(fullPrices.item(i).getAttribute("name"));
             let fullPrice = parseFloat(addPrice * addQuantity).toFixed(1);
             let fullPriceText = fullPrice + ' USD';
@@ -43,6 +44,8 @@ function addOneItem(){
 function subtractOneItem(){
     let subtractButtons = document.getElementsByClassName("subtractItem");
     let quantities = document.getElementsByClassName("quantity");
+    let fullPrices = document.getElementsByClassName("full");
+    let price = document.getElementById("price");
     for(let i = 0; i < subtractButtons.length; i++) {
         subtractButtons.item(i).addEventListener("click", function(){
             let productId = subtractButtons.item(i).getAttribute("name");
@@ -53,8 +56,17 @@ function subtractOneItem(){
             });
             let subtractQuantity = parseInt(quantities.item(i).innerHTML) - 1;
             quantities.item(i).innerHTML = subtractQuantity;
-            if(subtractQuantity==0){
+            if(subtractQuantity == 0){
                 location.reload(true);
+            } else {
+                let addPrice = parseInt(fullPrices.item(i).getAttribute("name"));
+                let fullPrice = parseFloat(addPrice * subtractQuantity).toFixed(1);
+                let fullPriceText = fullPrice + ' USD';
+                fullPrices.item(i).innerHTML = fullPriceText;
+
+                let priceValue = parseInt(price.innerHTML);
+                let newPrice = parseFloat(priceValue - addPrice).toFixed(1);
+                price.innerHTML = newPrice + ' USD';
             }
         });
     }

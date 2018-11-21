@@ -39,7 +39,6 @@ public class ShoppingCartController extends HttpServlet {
         values = new ArrayList<Integer>(sc.getCart().getProducts().values());
 
         createFullPrice();
-        System.out.println(fullPrice);
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
@@ -65,7 +64,6 @@ public class ShoppingCartController extends HttpServlet {
                     int num = Integer.valueOf(values.get(i).toString());
                     if(num > 1){
                         sc.add(productDataStore.find(productIndex), -1);
-                        System.out.println(productDataStore.find(productIndex).getDefaultPrice() * (num - 1));
                     } else if (num == 1){
                         sc.remove(productDataStore.find(productIndex));
                     }
