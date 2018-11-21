@@ -53,6 +53,7 @@
                     <th scope="col"></th>
                     <th scope="col">Product Quantity</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -62,6 +63,7 @@
                     <td><button class="subtractItem" th:name="${prod.getKey().getId()}">-</button></td>
                     <td class="quantity" th:text="${prod.getValue()}">Product Quantity</td>
                     <td><button class="addItem" th:name="${prod.getKey().getId()}">+</button></td>
+                    <td><button class="deleteBtn" th:name="${prod.getKey().getId()}">Delete</button></td>
                 </tr>
             </tbody>
         </table>
