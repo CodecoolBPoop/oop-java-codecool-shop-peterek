@@ -36,7 +36,8 @@ function subtractOneItem(){
     for(let i = 0; i < subtractButtons.length; i++) {
         subtractButtons.item(i).addEventListener("click", function(){
             let productId = subtractButtons.item(i).getAttribute("name");
-            let params = {itemId: productId};
+            let type = 1;
+            let params = {itemId: productId, type: type};
             $.post('/shopping-cart', $.param(params), function(){
                 console.log("successful");
             });
@@ -49,6 +50,22 @@ function subtractOneItem(){
     }
 }
 
+function deleteItem(){
+    let deleteButtons = document.getElementsByClassName("deleteBtn");
+    for(let deleteButton of deleteButtons) {
+        deleteButton.addEventListener("click", function(){
+            let productId = deleteButton.getAttribute("name");
+            let type = 2;
+            let params = {itemId: productId, type: type};
+            $.post('/shopping-cart', $.param(params), function(){
+                console.log("successful");
+            });
+            location.reload(true);
+        });
+    }
+}
+
 sendItemId();
 addOneItem();
 subtractOneItem();
+deleteItem();

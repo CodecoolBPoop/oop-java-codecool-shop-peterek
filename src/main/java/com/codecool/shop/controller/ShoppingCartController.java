@@ -41,20 +41,26 @@ public class ShoppingCartController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int productIndex = Integer.valueOf(req.getParameter("itemId"));
+        int type = Integer.valueOf(req.getParameter("type"));
 
         List products = new ArrayList<Product>(sc.getCart().getProducts().keySet());
         List values = new ArrayList<Integer>(sc.getCart().getProducts().values());
 
-        for(int i=0; i<products.size(); i++){
-            if(products.get(i).equals(productDataStore.find(productIndex))){
-                int num = Integer.valueOf(values.get(i).toString());
-                if(num > 1){
-                    sc.add(productDataStore.find(productIndex), -1);
-                } else if (num == 1){
-                    sc.remove(productDataStore.find(productIndex));
+        if(type == 1){
+            for(int i=0; i<products.size(); i++){
+                if(products.get(i).equals(productDataStore.find(productIndex))){
+                    int num = Integer.valueOf(values.get(i).toString());
+                    if(num > 1){
+                        sc.add(productDataStore.find(productIndex), -1);
+                    } else if (num == 1){
+                        sc.remove(productDataStore.find(productIndex));
+                    }
                 }
             }
+        } else if (type == 2){
+            sc.remove(productDataStore.find(productIndex));
         }
+
     }
 }
 
