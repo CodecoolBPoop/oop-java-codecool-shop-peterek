@@ -53,6 +53,7 @@
                     <th scope="col"></th>
                     <th scope="col">Product Quantity</th>
                     <th scope="col"></th>
+                    <th scope="col">Full</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -63,7 +64,17 @@
                     <td><button class="subtractItem" th:name="${prod.getKey().getId()}">-</button></td>
                     <td class="quantity" th:text="${prod.getValue()}">Product Quantity</td>
                     <td><button class="addItem" th:name="${prod.getKey().getId()}">+</button></td>
+                    <td class="full" th:name="${prod.getKey().getDefaultPrice()}" th:text="${prod.getValue() * prod.getKey().getDefaultPrice()} + ' USD'">Full</td>
                     <td><button class="deleteBtn" th:name="${prod.getKey().getId()}">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><p>Full Price:</p></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="price" th:name="${price}" th:text="${price} + ' USD'"></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
