@@ -28,7 +28,6 @@ public class ShoppingCartController extends HttpServlet {
 
     List products = new ArrayList<Product>();
     List values = new ArrayList<Integer>();
-    float fullPrice;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +35,8 @@ public class ShoppingCartController extends HttpServlet {
         products = new ArrayList<Product>(sc.getCart().getProducts().keySet());
         values = new ArrayList<Integer>(sc.getCart().getProducts().values());
 
-        createFullPrice();
+        TotalPriceCounter tpc = new TotalPriceCounter();
+        float fullPrice = tpc.createFullPrice();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
@@ -71,21 +71,6 @@ public class ShoppingCartController extends HttpServlet {
             sc.remove(productDataStore.find(productIndex));
         }
 
-    }
-
-    public void createFullPrice(){
-        products = new ArrayList<Product>(sc.getCart().getProducts().keySet());
-        values = new ArrayList<Integer>(sc.getCart().getProducts().values());
-        fullPrice = 0;
-        for(int i=0; i<products.size(); i++){
-            for(int j=1; j<=productDataStore.getAll().size(); j++){
-                if(products.get(i).equals(productDataStore.find(j))){
-                    float price = productDataStore.find(j).getDefaultPrice();
-                    int quantity = Integer.valueOf(values.get(i).toString());
-                    fullPrice += price * quantity;
-                }
-            }
-        }
     }
 
 }
