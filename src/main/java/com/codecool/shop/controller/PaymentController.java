@@ -1,7 +1,9 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.ShoppingCartDao;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.ShoppingCartDaoMem;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -16,6 +18,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/payment"})
 public class PaymentController extends HttpServlet {
 
+    ProductDao productDataStore = ProductDaoMem.getInstance();
     ShoppingCartDao sc = ShoppingCartDaoMem.getInstance();
     String email;
 
@@ -54,6 +57,11 @@ public class PaymentController extends HttpServlet {
             String securityCode = req.getParameter("securityCode");
             System.out.println(creditCardNumber + "/" + expirationDate + "/" + securityCode);
             System.out.println(email);
+
+            for(int i = 1; i <= productDataStore.getAll().size(); i++){
+                sc.remove(productDataStore.find(i));
+            }
+            
         }
 
     }
