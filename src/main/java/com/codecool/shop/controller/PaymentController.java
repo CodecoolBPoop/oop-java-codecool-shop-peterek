@@ -32,4 +32,19 @@ public class PaymentController extends HttpServlet {
 
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String address = req.getParameter("address");
+        String postalCode  = req.getParameter("postalCode");
+        String city = req.getParameter("city");
+        String country = req.getParameter("country");
+        String phoneNumber = req.getParameter("phoneNumber");
+        String email = req.getParameter("email");
+        System.out.println(firstName + "/" + lastName + "/" + address + "/" + postalCode + "/" + city + "/" + country + "/" +phoneNumber + "/" + email );
+
+    }
+
 }

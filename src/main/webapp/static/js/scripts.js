@@ -87,7 +87,87 @@ function deleteItem(){
     }
 }
 
+function deliveryAddress(){
+    let nextBtn = document.getElementById("next");
+    nextBtn.addEventListener("click", function(){
+       let firstName = document.getElementById("firstName").value;
+       let lastName = document.getElementById("lastName").value;
+       let address = document.getElementById("address").value;
+       let postalCode = document.getElementById("postalCode").value;
+       let city = document.getElementById("city").value;
+       let country = document.getElementById("country").value;
+       let phoneNumber = document.getElementById("phoneNumber").value;
+       let email = document.getElementById("email").value;
+       let params = {
+           firstName: firstName,
+           lastName: lastName,
+           address: address,
+           postalCode: postalCode,
+           city: city,
+           country: country,
+           phoneNumber: phoneNumber,
+           email: email};
+       $.post('/payment', $.param(params), function(){
+           console.log("success");
+       });
+       let element = document.getElementById("deliveryAddressForm");
+       element.parentNode.removeChild(element);
+
+       var basicElement = document.getElementById("basic");
+       var title = document.createElement("h1");
+       var titleText = document.createTextNode("Payment");
+       title.appendChild(titleText);
+       basicElement.appendChild(title);
+       var break1 = document.createElement("br");
+       basicElement.appendChild(break1);
+       var p1 = document.createElement("p");
+       var p1Text = document.createTextNode("Credit card number");
+       p1.appendChild(p1Text);
+       basicElement.appendChild(p1);
+       var input1 = document.createElement("input");
+       input1.setAttribute("type", "text");
+       input1.setAttribute("id", "creditCardNumber");
+       input1.setAttribute("value", "");
+       basicElement.appendChild(input1);
+       var break2 = document.createElement("br");
+       basicElement.appendChild(break2);
+       var break3 = document.createElement("br");
+       basicElement.appendChild(break3);
+       var p2 = document.createElement("p");
+       var p2Text = document.createTextNode("Expiration date");
+       p2.appendChild(p2Text);
+       basicElement.appendChild(p2);
+       var input2 = document.createElement("input");
+       input2.setAttribute("type", "text");
+       input2.setAttribute("id", "creditCardNumber");
+       input2.setAttribute("value", "");
+       basicElement.appendChild(input2);
+       var break4 = document.createElement("br");
+       basicElement.appendChild(break4);
+       var break5 = document.createElement("br");
+       basicElement.appendChild(break5);
+       var p3 = document.createElement("p");
+       var p3Text = document.createTextNode("Security code");
+       p3.appendChild(p3Text);
+       basicElement.appendChild(p3);
+       var input3 = document.createElement("input");
+       input3.setAttribute("type", "text");
+       input3.setAttribute("id", "creditCardNumber");
+       input3.setAttribute("value", "");
+       basicElement.appendChild(input3);
+       var break6 = document.createElement("br");
+       basicElement.appendChild(break6);
+       var break7 = document.createElement("br");
+       basicElement.appendChild(break7);
+       var payButton = document.createElement("button");
+       payButton.setAttribute("id", "paymentButton");
+       payButton.innerHTML = "Pay";
+       basicElement.appendChild(payButton);
+    });
+}
+
 sendItemId();
 addOneItem();
 subtractOneItem();
 deleteItem();
+deliveryAddress();
