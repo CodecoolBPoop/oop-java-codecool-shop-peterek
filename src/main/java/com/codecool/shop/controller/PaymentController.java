@@ -17,6 +17,7 @@ import java.io.IOException;
 public class PaymentController extends HttpServlet {
 
     ShoppingCartDao sc = ShoppingCartDaoMem.getInstance();
+    String email;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,15 +36,25 @@ public class PaymentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        String address = req.getParameter("address");
-        String postalCode  = req.getParameter("postalCode");
-        String city = req.getParameter("city");
-        String country = req.getParameter("country");
-        String phoneNumber = req.getParameter("phoneNumber");
-        String email = req.getParameter("email");
-        System.out.println(firstName + "/" + lastName + "/" + address + "/" + postalCode + "/" + city + "/" + country + "/" +phoneNumber + "/" + email );
+        int Type = Integer.valueOf(req.getParameter("type"));
+
+        if(Type == 1){
+            String firstName = req.getParameter("firstName");
+            String lastName = req.getParameter("lastName");
+            String address = req.getParameter("address");
+            String postalCode  = req.getParameter("postalCode");
+            String city = req.getParameter("city");
+            String country = req.getParameter("country");
+            String phoneNumber = req.getParameter("phoneNumber");
+            email = req.getParameter("email");
+            System.out.println(firstName + "/" + lastName + "/" + address + "/" + postalCode + "/" + city + "/" + country + "/" +phoneNumber + "/" + email );
+        } else if (Type == 2){
+            String creditCardNumber = req.getParameter("creditCardNumber");
+            String expirationDate = req.getParameter("expirationDate");
+            String securityCode = req.getParameter("securityCode");
+            System.out.println(creditCardNumber + "/" + expirationDate + "/" + securityCode);
+            System.out.println(email);
+        }
 
     }
 

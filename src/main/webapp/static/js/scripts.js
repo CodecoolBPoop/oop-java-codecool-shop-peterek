@@ -90,6 +90,7 @@ function deleteItem(){
 function deliveryAddress(){
     let nextBtn = document.getElementById("next");
     nextBtn.addEventListener("click", function(){
+       let type = 1;
        let firstName = document.getElementById("firstName").value;
        let lastName = document.getElementById("lastName").value;
        let address = document.getElementById("address").value;
@@ -99,6 +100,7 @@ function deliveryAddress(){
        let phoneNumber = document.getElementById("phoneNumber").value;
        let email = document.getElementById("email").value;
        let params = {
+           type: type,
            firstName: firstName,
            lastName: lastName,
            address: address,
@@ -139,7 +141,7 @@ function deliveryAddress(){
        basicElement.appendChild(p2);
        var input2 = document.createElement("input");
        input2.setAttribute("type", "text");
-       input2.setAttribute("id", "creditCardNumber");
+       input2.setAttribute("id", "expirationDate");
        input2.setAttribute("value", "");
        basicElement.appendChild(input2);
        var break4 = document.createElement("br");
@@ -152,7 +154,7 @@ function deliveryAddress(){
        basicElement.appendChild(p3);
        var input3 = document.createElement("input");
        input3.setAttribute("type", "text");
-       input3.setAttribute("id", "creditCardNumber");
+       input3.setAttribute("id", "securityCode");
        input3.setAttribute("value", "");
        basicElement.appendChild(input3);
        var break6 = document.createElement("br");
@@ -163,6 +165,36 @@ function deliveryAddress(){
        payButton.setAttribute("id", "paymentButton");
        payButton.innerHTML = "Pay";
        basicElement.appendChild(payButton);
+       payment();
+    });
+}
+
+function payment(){
+    let button = document.getElementById("paymentButton");
+    button.addEventListener("click", function () {
+        console.log("button jó");
+        let type = 2;
+        let creditCardNumber = document.getElementById("creditCardNumber").value;
+        let expirationDate = document.getElementById("expirationDate").value;
+        let securityCode = document.getElementById("securityCode").value;
+        let params = {
+            type: type,
+            creditCardNumber: creditCardNumber,
+            expirationDate: expirationDate,
+            securityCode: securityCode};
+        $.post('/payment', $.param(params), function(){
+            console.log("success");
+        });
+        let element1 = document.getElementById("body1");
+        element1.parentNode.removeChild(element1);
+        let element2 = document.getElementById("body2");
+        element2.parentNode.removeChild(element2);
+
+        var basicElement = document.getElementById("headBottom");
+        var title = document.createElement("h1");
+        var titleText = document.createTextNode("Thank you for your payment! See you soon! Goodbye!");
+        title.appendChild(titleText);
+        basicElement.appendChild(title);
     });
 }
 
