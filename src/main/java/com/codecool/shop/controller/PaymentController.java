@@ -61,7 +61,7 @@ public class PaymentController extends HttpServlet {
             for(int i = 1; i <= productDataStore.getAll().size(); i++){
                 sc.remove(productDataStore.find(i));
             }
-            
+
         }
 
     }

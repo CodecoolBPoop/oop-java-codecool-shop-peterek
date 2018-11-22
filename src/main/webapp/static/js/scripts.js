@@ -191,10 +191,22 @@ function payment(){
         element2.parentNode.removeChild(element2);
 
         var basicElement = document.getElementById("headBottom");
+
+        var firstDiv = document.createElement("div");
+        firstDiv.setAttribute("class", "col-lg-12");
+        basicElement.appendChild(firstDiv);
+
         var title = document.createElement("h1");
         var titleText = document.createTextNode("Thank you for your payment! See you soon! Goodbye!");
         title.appendChild(titleText);
-        basicElement.appendChild(title);
+        firstDiv.appendChild(title);
+        var break1 = document.createElement("br");
+        firstDiv.appendChild(break1);
+        var backToIndexHtmlButton = document.createElement("a");
+        backToIndexHtmlButton.setAttribute("href", "/");
+        backToIndexHtmlButton.setAttribute("class", "btn btn-warning");
+        backToIndexHtmlButton.innerHTML = "Back to the shop";
+        firstDiv.appendChild(backToIndexHtmlButton);
     });
 }
 
