@@ -49,35 +49,26 @@
     <div class="container">
 
         <table class="table table-bordered mt-3">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">Product Name</th>
                     <th scope="col">Product Price</th>
-                    <th scope="col"></th>
                     <th scope="col">Product Quantity</th>
                     <th scope="col"></th>
                     <th scope="col">Full</th>
-                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="prod : ${sc}">
                     <td th:text="${prod.getKey().name}">Product Name</td>
                     <td th:text="${prod.getKey().getPrice()}">Product Price</td>
-                    <td><button class="subtractItem" th:name="${prod.getKey().getId()}">-</button></td>
                     <td class="quantity" th:text="${prod.getValue()}">Product Quantity</td>
-                    <td><button class="addItem" th:name="${prod.getKey().getId()}">+</button></td>
+                    <td class="text-center"><button class="subtractItem btn btn-secondary" th:name="${prod.getKey().getId()}">-</button><button class="addItem btn btn-secondary ml-1" th:name="${prod.getKey().getId()}">+</button><button class="deleteBtn ml-1 btn btn-secondary" th:name="${prod.getKey().getId()}">Delete</button></td>
                     <td class="full" th:name="${prod.getKey().getDefaultPrice()}" th:text="${prod.getValue() * prod.getKey().getDefaultPrice()} + ' USD'">Full</td>
-                    <td><button class="deleteBtn" th:name="${prod.getKey().getId()}">Delete</button></td>
                 </tr>
                 <tr>
-                    <td><p>TOTAL:</p></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="4"><p>TOTAL:</p></td>
                     <td id="price" th:name="${price}" th:text="${price} + ' USD'"></td>
-                    <td></td>
                 </tr>
             </tbody>
         </table>
