@@ -115,6 +115,10 @@ function deliveryAddress(){
        let element = document.getElementById("deliveryAddressForm");
        element.parentNode.removeChild(element);
 
+       let editShoppingCart = document.getElementById("edit-shopping-cart");
+       let editLink = document.getElementById("edit-link");
+       editShoppingCart.removeChild(editLink);
+
        var basicElement = document.getElementById("basic");
        var title = document.createElement("h1");
        var titleText = document.createTextNode("Payment");
@@ -209,6 +213,7 @@ function payment(){
         firstDiv.appendChild(backToIndexHtmlButton);
     });
 }
+
 
 sendItemId();
 addOneItem();

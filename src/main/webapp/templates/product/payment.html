@@ -46,50 +46,93 @@
                     <div id="basic">
                         <div id="deliveryAddressForm">
                             <h1 class="pt-3">Delivery Address</h1><br>
-                            <p>First name</p>
-                            <input type="text" id="firstName" value=""><br><br>
-                            <p>Last name</p>
-                            <input type="text" id="lastName" value=""><br><br>
-                            <p>Address</p>
-                            <input type="text" id="address" value=""><br><br>
-                            <p>Postal code</p>
-                            <input type="text" id="postalCode" value=""><br><br>
-                            <p>City</p>
-                            <input type="text" id="city" value=""><br><br>
-                            <p>Country</p>
-                            <input type="text" id="country" value=""><br><br>
-                            <p>Phone number</p>
-                            <input type="text" id="phoneNumber" value=""><br><br>
-                            <p>Email address</p>
-                            <input type="text" id="email" value=""><br><br>
-                            <button id="next">Next</button>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3">First Name</span>
+                                </div>
+                                <input type="text" id="firstName" class="form-control" aria-describedby="basic-addon3">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3">Last Name</span>
+                                </div>
+                                <input type="text" id="lastName" class="form-control" aria-describedby="basic-addon3">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3">Address</span>
+                                </div>
+                                <input type="text" id="address" class="form-control" aria-describedby="basic-addon3">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Postal Code</span>
+                                </div>
+                                <input type="text" id="postalCode" class="form-control" aria-describedby="basic-addon3">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">City</span>
+                                </div>
+                                <input type="text" id="city" class="form-control" aria-describedby="basic-addon3">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Country</span>
+                                </div>
+                                <input type="text" id="country" class="form-control" aria-describedby="basic-addon3">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Phone Number</span>
+                                </div>
+                                <input type="text" id="phoneNumber" class="form-control" aria-describedby="basic-addon3">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Email address</span>
+                                </div>
+                                <input type="text" id="email" class="form-control" aria-describedby="basic-addon3">
+                            </div>
+
+                            <button id="next" class="btn btn-warning">Next</button>
                         </div>
                     </div>
                 </div>
+
                 <div id="body2" class="col-lg-6">
-                    <h1>Shopping List</h1>
+                    <div>
+                        <h1 id="edit-shopping-cart" class="pt-3">Shopping Cart<a id="edit-link" href="/shopping-cart" class="ml-2 p-1 btn btn-warning">Edit</a></h1>
+                    </div>
                     <table class="table table-bordered mt-3">
-                        <thead>
-                        <tr>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Product Quantity</th>
-                            <th scope="col">Full</th>
-                        </tr>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Product Quantity</th>
+                                <th scope="col">Full</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="prod : ${sc}">
-                            <td th:text="${prod.getKey().name}">Product Name</td>
-                            <td class="quantity" th:text="${prod.getValue()}">Product Quantity</td>
-                            <td class="full" th:name="${prod.getKey().getDefaultPrice()}" th:text="${prod.getValue() * prod.getKey().getDefaultPrice()} + ' USD'">Full</td>
-                        </tr>
-                        <tr>
-                            <td><p>TOTAL:</p></td>
-                            <td></td>
-                            <td id="price" th:name="${total}" th:text="${total} + ' USD'"></td>
-                        </tr>
+                            <tr th:each="prod : ${sc}">
+                                <td th:text="${prod.getKey().name}">Product Name</td>
+                                <td class="quantity" th:text="${prod.getValue()}">Product Quantity</td>
+                                <td class="full" th:name="${prod.getKey().getDefaultPrice()}" th:text="${prod.getValue() * prod.getKey().getDefaultPrice()} + ' USD'">Full</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><p>TOTAL:</p></td>
+                                <td id="price" th:name="${total}" th:text="${total} + ' USD'"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
