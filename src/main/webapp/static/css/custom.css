@@ -16,3 +16,11 @@ body {
     width: 100%;
     font-size: 12px;
 }
+
+div .input-group-prepend {
+    width: 30%;
+}
+
+div .input-group-text {
+    width: 100%;
+}
