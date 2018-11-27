@@ -30,7 +30,7 @@ CREATE TABLE "cart" (
 	"item_id" bigint NOT NULL,
 	"quantity" bigint NOT NULL,
 	"active" BOOLEAN NOT NULL DEFAULT '1',
-	"historydate" DATE DEFAULT 'null',
+	"historydate" DATE,
 	CONSTRAINT cart_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
