@@ -7,6 +7,22 @@ import java.util.List;
 
 public class SupplierDaoJDBC implements SupplierDao {
 
+    private static SupplierDaoJDBC instance = null;
+
+    private SupplierDaoJDBC() {
+    }
+
+    public static SupplierDaoJDBC getInstance() {
+        if (instance == null) {
+            instance = new SupplierDaoJDBC();
+        }
+        return instance;
+    }
+
+    public static int getSupplierIdByName() {
+        //pass
+    }
+
     @Override
     public void add(Supplier supplier) {
         //pass
