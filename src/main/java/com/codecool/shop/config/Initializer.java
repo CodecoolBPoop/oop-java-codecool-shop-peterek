@@ -47,10 +47,12 @@ public class Initializer implements ServletContextListener {
 
 
         // adding to DB
-        supplierDB.add(lenovo);
-        productCategoryDB.add(tablet);
-        Product laptop = new Product("Amazon Fire", 49, "USD", "hehe", tablet, amazon);
-        productDB.add(laptop);
+        //supplierDB.add(lenovo);
+        //supplierDB.add(amazon);
+        //productCategoryDB.add(tablet);
+        //productCategoryDB.add(display);
+        //Product laptop = new Product("Amazon Fire", 49, "USD", "hehe", tablet, amazon);
+        //productDB.add(laptop);
 
 
         //setting up products and printing it
