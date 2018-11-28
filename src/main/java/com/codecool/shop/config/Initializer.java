@@ -3,9 +3,7 @@ package com.codecool.shop.config;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -13,6 +11,8 @@ import com.codecool.shop.model.Supplier;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebListener
 public class Initializer implements ServletContextListener {
@@ -23,11 +23,17 @@ public class Initializer implements ServletContextListener {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
+        //JDBC
+        ProductDao productDB = ProductDaoJDBC.getInstance();
+        ProductCategoryDao productCategoryDB = ProductCategoryDaoJDBC.getInstance();
+        SupplierDao supplierDB = SupplierDaoJDBC.getInstance();
+
         //setting up a new supplier
         Supplier amazon = new Supplier("Amazon", "Digital content and services");
         supplierDataStore.add(amazon);
         Supplier lenovo = new Supplier("Lenovo", "Computers");
         supplierDataStore.add(lenovo);
+
 
         //setting up a new product category
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
@@ -38,6 +44,14 @@ public class Initializer implements ServletContextListener {
 
         ProductCategory dog = new ProductCategory("Dog", "Dogware", "Funnny stuff");
         productCategoryDataStore.add(dog);
+
+
+        // adding to DB
+        supplierDB.add(lenovo);
+        productCategoryDB.add(tablet);
+        Product laptop = new Product("Amazon Fire", 49, "USD", "hehe", tablet, amazon);
+        productDB.add(laptop);
+
 
         //setting up products and printing it
         productDataStore.add(new Product("Amazon Fire", 49, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));

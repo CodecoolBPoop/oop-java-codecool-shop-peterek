@@ -25,7 +25,7 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
     }
 
     public static int getIdByName(String name) {
-        String getName = "SELECT id FROM categories WHERE name=?";
+        String getName = "SELECT id FROM category WHERE name=?";
         try (Connection connection = DbConnection.getConnection();
              PreparedStatement getItByName = connection.prepareStatement(getName)
         ) {
@@ -43,7 +43,18 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
 
     @Override
     public void add(ProductCategory category) {
-        //pass
+        try {
+            String query =
+                    "INSERT INTO category(name, department, description) VALUES (?,?,?)";
+            PreparedStatement statement = getConnection().prepareStatement(query);
+
+            statement.setString(1, category.getName());
+            statement.setString(2, category.getDepartment());
+            statement.setString(3, category.getDescription());
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

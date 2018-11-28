@@ -44,7 +44,17 @@ public class SupplierDaoJDBC implements SupplierDao {
 
     @Override
     public void add(Supplier supplier) {
-        //pass
+        try {
+            String query =
+                    "INSERT INTO suppliers(name, description) VALUES (?,?)";
+            PreparedStatement statement = getConnection().prepareStatement(query);
+
+            statement.setString(1, supplier.getName());
+            statement.setString(2, supplier.getDescription());
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

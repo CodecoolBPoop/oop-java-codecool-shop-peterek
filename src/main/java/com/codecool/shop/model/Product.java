@@ -25,7 +25,7 @@ public class Product extends BaseModel {
         this.defaultPrice = defaultPrice;
     }
 
-    public int getDefaultCurrency() {
+    public Currency getDefaultCurrency() {
         return defaultCurrency;
     }
 
